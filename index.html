@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examen de PW - practica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+
+    .exam-container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .question {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .question-text {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .options {
+      margin-left: 20px;
+    }
+
+    .option {
+      margin: 5px 0;
+    }
+
+    .submit-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .submit-btn:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 18px;
+      display: none;
+    }
+
+    .correct {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .incorrect {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .feedback {
+      margin-top: 5px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .correct-feedback {
+      color: #28a745;
+    }
+
+    .incorrect-feedback {
+      color: #dc3545;
+    }
+
+    .multiple-correct {
+      color: #007bff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="exam-container">
+    <h1>Examen de Programación WEB</h1>
+    <form id="examForm">
+      <!-- Pregunta 1 -->
+      <div class="question">
+        <div class="question-text">1. ¿Qué rol cumplen los navegadores web o browsers?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q1" value="A"> Nos permiten acceder a páginas web.
+            <div class="feedback" id="feedback-q1" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q1" value="B"> Almacenan datos en la nube</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="question">
+        <div class="question-text">2. HTTP establece códigos de estado que nos permiten conocer si el estado es Exitoso,
+          es un Error del Cliente o un Error del Servidor. ¿Cuál de los siguientes códigos podrán informar Error en el
+          Cliente?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q2" value="A"> 404-405
+            <div class="feedback" id="feedback-q2" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q2" value="B"> 200-201</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <div class="question">
+        <div class="question-text">3. El protocolo HTTP establece un conjunto de reglas que definen como debe realizarse
+          una comunicación. Indica cuál de las siguientes opciones, puede formar parte de una comunicación HTTP.</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q3" value="A"> Cliente-Servidor
+            <div class="feedback" id="feedback-q3" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q3" value="B"> Peer-to-Peer</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 4 -->
+      <div class="question">
+        <div class="question-text">4. Mientras que con HTML damos estructura a los datos con CSS podemos dar[….] al
+          contenido en HTML. Elige la opción correcta para completar la oración:</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q4" value="A"> Formato
+            <div class="feedback" id="feedback-q4" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q4" value="B"> Lógica</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 5 -->
+      <div class="question">
+        <div class="question-text">5. ¿A quién se le denomina "cliente" en la arquitectura cliente-servidor?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q5" value="A"> A quién inicia la comunicación con el servidor
+            <div class="feedback" id="feedback-q5" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q5" value="B"> A quién responde las solicitudes</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 6 -->
+      <div class="question">
+        <div class="question-text">6. Estas construyendo una aplicación y necesitas almacenar información en memoria.
+          ¿Cómo podrías lograr esto?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q6" value="A"> Con Variables
+            <div class="feedback" id="feedback-q6" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q6" value="B"> Con Funciones</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 7 -->
+      <div class="question">
+        <div class="question-text">7. ¿Cómo se llaman los métodos que sirven para recuperar y establecer el valor de una
+          variable de instancia?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q7" value="A"> getter - setter
+            <div class="feedback" id="feedback-q7" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q7" value="B"> constructor - destructor</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 8 -->
+      <div class="question">
+        <div class="question-text">8. Se te solicita que implementes una interfaz en una clase. ¿Qué palabra clave se
+          utiliza para esto?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q8" value="A"> Implements
+            <div class="feedback" id="feedback-q8" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q8" value="B"> Extends</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 9 -->
+      <div class="question">
+        <div class="question-text">9. Para poder empezar con la codificación de un nuevo sistema, tienes que primero
+          crear una tabla dentro de una base de datos MySQL. ¿Qué sentencia podrías utilizar?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q9" value="A"> CREATE
+            <div class="feedback" id="feedback-q9" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q9" value="B"> INSERT</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 10 -->
+      <div class="question">
+        <div class="question-text">10. Tienes que modificar filas de una tabla particular para un proyecto que se
+          conecta a una base de datos MySQL. ¿Qué sentencia puedes utilizar?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q10" value="A"> UPDATE
+            <div class="feedback" id="feedback-q10" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q10" value="B"> SELECT</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 11 -->
+      <div class="question">
+        <div class="question-text">11. Tienes que obtener filas de una tabla particular para un nuevo proyecto que se
+          conecta con una base de datos MySQL ¿Qué sentencia puedes utilizar?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q11" value="A"> SELECT
+            <div class="feedback" id="feedback-q11" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q11" value="B"> UPDATE</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 12 -->
+      <div class="question">
+        <div class="question-text">12. Tienes que crear una página web. ¿Qué lenguaje estándar podrías utilizar?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q12" value="A"> HTML
+            <div class="feedback" id="feedback-q12" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q12" value="B"> CSS</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 13 -->
+      <div class="question">
+        <div class="question-text">13. El cuerpo de un archivo HTML se indica con las etiquetas &lt;p&gt;&lt;/p&gt;
+        </div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q13" value="A"> Falso
+            <div class="feedback" id="feedback-q13" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q13" value="B"> Verdadero</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 14 -->
+      <div class="question">
+        <div class="question-text">14. Te solicitan que cambies el título de una página HTML. ¿En qué tag deberías
+          cambiar el contenido?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q14" value="A"> &lt;title&gt;&lt;/title&gt;
+            <div class="feedback" id="feedback-q14" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q14" value="B"> &lt;h1&gt;&lt;/h1&gt;</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 15 -->
+      <div class="question">
+        <div class="question-text">15. &lt;p&gt;Soy un texto&lt;a&gt;súper&lt;/a&gt;&lt;/p&gt;. Para el fragmento de
+          código HTML anterior, indique cuales de las siguientes opciones son correctas.</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q15" value="A"> Se indica un link – Se indica un párrafo
+            <div class="feedback" id="feedback-q15" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q15" value="B"> Solo se indica un párrafo</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 16 -->
+      <div class="question">
+        <div class="question-text">16. ¿Qué navegadores web podemos encontrar hoy en sistemas Windows, Linux o Mac?
+        </div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q16" value="A"> Firefox – Microsoft Edge – Safari
+            <div class="feedback" id="feedback-q16" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q16" value="B"> Solo Chrome</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 17 -->
+      <div class="question">
+        <div class="question-text">17. ¿Qué establece HTTP?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q17" value="A"> Reglas para la comunicación entre clientes y servidores
+            <div class="feedback" id="feedback-q17" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q17" value="B"> Lenguaje de programación</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 18 -->
+      <div class="question">
+        <div class="question-text">18. Luego de enviar una solicitud al servidor, este responde con un código de estado
+          503. ¿Cómo se interpreta ese código?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q18" value="A"> Significa que el servidor no está disponible
+            <div class="feedback" id="feedback-q18" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q18" value="B"> Significa que el servidor no encuentra el
+            recurso</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 19 -->
+      <div class="question">
+        <div class="question-text">19. Luego de enviar una solicitud al servidor, este responde con un código de estado
+          404. ¿Cómo se interpreta ese código?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q19" value="A"> Significa que el servidor no encuentra el recurso
+            <div class="feedback" id="feedback-q19" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q19" value="B"> Significa que el servidor no está disponible
+          </div>
+        </div>
+      </div>
+
+      <!-- Pregunta 20 -->
+      <div class="question">
+        <div class="question-text">20. Tienes que cambiar el color de fondo de un elemento HTML. ¿Qué puedes utilizar?
+        </div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q20" value="A"> CSS
+            <div class="feedback" id="feedback-q20" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q20" value="B"> HTML</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 21 -->
+      <div class="question">
+        <div class="question-text">21. "boolean miBooleano = true || ____: Selecciona las opciones que hace que
+          "miBooleano" tenga valor TRUE".</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q21" value="A"> 3>0
+            <div class="feedback" id="feedback-q21" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q21" value="B"> "5>4"</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 22 -->
+      <div class="question">
+        <div class="question-text">22. boolean miPrimerBoolean = "false". Indique si la asignación anterior es correcta.
+        </div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q22" value="A"> Falso
+            <div class="feedback" id="feedback-q22" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q22" value="B"> Verdadero</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 23 -->
+      <div class="question">
+        <div class="question-text">23. Una de las convenciones de código proponen un tamaño máximo de archivos en
+          cantidad de líneas de código. ¿Cuáles de las siguientes cantidades de líneas de un archivo cumplen con el
+          estándar?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q23" value="A"> Todas las anteriores
+            <div class="feedback" id="feedback-q23" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q23" value="B"> Solo 1500</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 24 -->
+      <div class="question">
+        <div class="question-text">24. ¿Qué dimensión posee la siguiente matriz int [][] arr = new int[3][3]</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q24" value="A"> 3 x 3
+            <div class="feedback" id="feedback-q24" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q24" value="B"> 3 x 2</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 25 -->
+      <div class="question">
+        <div class="question-text">25. Selecciona la opción correcta para que MiLista herede el contrato de Lista{…}
+          Public interface MiLista(…)</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q25" value="A"> Extends
+            <div class="feedback" id="feedback-q25" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q25" value="B"> Implements</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 26 -->
+      <div class="question">
+        <div class="question-text">26. Para poder usar el modificador "protected" ¿Qué relación de clases debe existir?
+        </div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q26" value="A"> Herencia de clase
+            <div class="feedback" id="feedback-q26" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q26" value="B"> Composición</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 27 -->
+      <div class="question">
+        <div class="question-text">27. ¿Cuáles son los dos procesos que permiten verificar la identidad del usuario y
+          asociar al usuario con permisos sobre los recursos de un sistema?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q27" value="A"> Autenticación - Autorización
+            <div class="feedback" id="feedback-q27" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q27" value="B"> Login - Logout</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 28 -->
+      <div class="question">
+        <div class="question-text">28. ¿A quién se le denomina servidor en la arquitectura cliente servidor?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q28" value="A"> A quién responde las solicitudes del cliente
+            <div class="feedback" id="feedback-q28" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q28" value="B"> A quién inicia la comunicación</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 29 -->
+      <div class="question">
+        <div class="question-text">29. ¿Qué es logging?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q29" value="A"> La acción de generar mensajes durante la ejecución de un programa
+            <div class="feedback" id="feedback-q29" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q29" value="B"> Almacenar datos en una base de datos</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 30 -->
+      <div class="question">
+        <div class="question-text">30. H1 {color:Green;} indica cuál de las siguientes opciones con correctas en
+          relación al código CSS anterior.</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q30" value="A"> Se establece el color verde a los títulos
+            <div class="feedback" id="feedback-q30" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q30" value="B"> Se establece el color verde al cuerpo de la
+            página</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 31 -->
+      <div class="question">
+        <div class="question-text">31. Tienes que almacenar datos en forma de tabla en tu aplicación web ¿Qué estructura
+          de datos puedes utilizar?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q31" value="A"> Matriz
+            <div class="feedback" id="feedback-q31" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q31" value="B"> Lista</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 32 -->
+      <div class="question">
+        <div class="question-text">32. &lt;__&gt;código CSS&lt;/__&gt; Es posible utilizar una etiqueta para embeber
+          código CSS dentro de un archivo HTML. Elige la etiqueta a utilizar para poder realizar esta acción.</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q32" value="A"> Style
+            <div class="feedback" id="feedback-q32" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q32" value="B"> Script</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 33 -->
+      <div class="question">
+        <div class="question-text">33. ¿A quién se le denomina "servidor" en la arquitectura cliente-servidor?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q33" value="A"> A quien responde a la solicitud del cliente
+            <div class="feedback" id="feedback-q33" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q33" value="B"> A quien inicia la comunicación</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 34 -->
+      <div class="question">
+        <div class="question-text">34. Te han solicitado diseñar la estructura de una aplicación web ¿Qué arquetipo
+          podrás utilizar?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q34" value="A"> Modelo-vista-controlador
+            <div class="feedback" id="feedback-q34" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q34" value="B"> Cliente-servidor</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 35 -->
+      <div class="question">
+        <div class="question-text">35. Elige la palabra correcta para completar la frase "Un arquetipo define un patrón
+          o modelo que podremos utilizar para crear aplicaciones con estructura similar. Elige los patrones más
+          conocidos en el de Modelo-vista-______"</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q35" value="A"> Controlador
+            <div class="feedback" id="feedback-q35" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q35" value="B"> Servidor</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 36 -->
+      <div class="question">
+        <div class="question-text">36. Existen programas que facilitan el desarrollo de proyectos de software. ¿Cómo se
+          llaman estos programas?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q36" value="A"> Entorno de desarrollo integrado
+            <div class="feedback" id="feedback-q36" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q36" value="B"> Compiladores</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 37 -->
+      <div class="question">
+        <div class="question-text">37. ¿Cuáles de las siguientes estructuras permiten repetir la ejecución de un bloque
+          de código?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q37" value="A"> For - while
+            <div class="feedback" id="feedback-q37" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q37" value="B"> If - else</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 38 -->
+      <div class="question">
+        <div class="question-text">38. int miPrimerVarialble = 2. Seleccione las opciones que describen correctamente el
+          efecto de la línea de código anterior.</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q38" value="A"> Se asigna el valor 2 a una variable de tipo entero - Se crea una
+            variable de tipo entero
+            <div class="feedback" id="feedback-q38" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q38" value="B"> Solo se crea una variable</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 39 -->
+      <div class="question">
+        <div class="question-text">39. Dado que el siguiente arreglo int [] arr=new int[3] ¿Cuál es el máximo índice que
+          podremos acceder?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q39" value="A"> 2
+            <div class="feedback" id="feedback-q39" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q39" value="B"> 3</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 40 -->
+      <div class="question">
+        <div class="question-text">40. Completar para que el método retorne "vacio". Public ____ método nuevo().</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q40" value="A"> void
+            <div class="feedback" id="feedback-q40" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q40" value="B"> int</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 41 -->
+      <div class="question">
+        <div class="question-text">41. ¿Qué definen los métodos?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q41" value="A"> Operaciones o acciones que objetos de una clase pueden realizar
+            <div class="feedback" id="feedback-q41" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q41" value="B"> Atributos de una clase</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 42 -->
+      <div class="question">
+        <div class="question-text">42. Si tengo el siguiente código final int numero = 5. Indicar cuales afirmaciones
+          son correctas.</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q42" value="A"> Se crea una variable de tipo entero - La variable número no podrá
+            cambiar de valor
+            <div class="feedback" id="feedback-q42" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q42" value="B"> Solo se crea una variable</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 43 -->
+      <div class="question">
+        <div class="question-text">43. Completar para que la clase perro herede estado y comportamiento de la clase
+          Animal: public class Perro_______Animal()</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q43" value="A"> Extends
+            <div class="feedback" id="feedback-q43" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q43" value="B"> Implements</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 44 -->
+      <div class="question">
+        <div class="question-text">44. Como buena práctica en la empresa donde trabajas, te solicitan que utilices
+          herencia ¿Qué establece el uso de la herencia en una aplicación?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q44" value="A"> Reutilización de código y jerarquía de clases
+            <div class="feedback" id="feedback-q44" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q44" value="B"> Solo encapsulación</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 45 -->
+      <div class="question">
+        <div class="question-text">45. Selecciona las palabras reservada a usar para que miVariable sea un atributo
+          privado de tipo decimal pero con poca precisión en la clase Estudiante. Tené en cuenta que el orden es
+          importante: public class Estudiante{__ __miVarialbe=5;}</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q45" value="A"> Private Float
+            <div class="feedback" id="feedback-q45" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q45" value="B"> Public Float</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 46 -->
+      <div class="question">
+        <div class="question-text">46. Selecciona la opción correcta para que MyClass sea de tipo MyInterface: public
+          class Myclass ____ MyInterface{…}</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q46" value="A"> Implements
+            <div class="feedback" id="feedback-q46" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q46" value="B"> Extends</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 47 -->
+      <div class="question">
+        <div class="question-text">47. ¿Que indica la palabra final en este contexto: public final class MyClass{…}?
+        </div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q47" value="A"> Que la clase no puede ser heredada
+            <div class="feedback" id="feedback-q47" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q47" value="B"> Que la clase es abstracta</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 48 -->
+      <div class="question">
+        <div class="question-text">48. ¿Qué método se usa para convertir un tipo string a boolean?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q48" value="A"> Boolean.parseBoolean()
+            <div class="feedback" id="feedback-q48" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q48" value="B"> String.toBoolean()</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 49 -->
+      <div class="question">
+        <div class="question-text">49. Un error es lo mismo que una excepción.</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q49" value="A"> No
+            <div class="feedback" id="feedback-q49" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q49" value="B"> Si</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 50 -->
+      <div class="question">
+        <div class="question-text">50. Completa para crear el paquete"ar.teclab.ejemplo":__ar.teclab.ejemplo:</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q50" value="A"> PACKAGE
+            <div class="feedback" id="feedback-q50" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q50" value="B"> IMPORT</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 51 -->
+      <div class="question">
+        <div class="question-text">51. ¿Qué tipo de objetos permiten almacenar otros objetos dentro de estos?</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q51" value="A"> Colecciones
+            <div class="feedback" id="feedback-q51" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q51" value="B"> Variables</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 52 -->
+      <div class="question">
+        <div class="question-text">52. Public class MyClass{public final void myMethod{}} indica la opción correcta
+          según el código.</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q52" value="A"> El método Mymethod no puede re implementarse - Se crea una clase
+            MyClass
+            <div class="feedback" id="feedback-q52" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q52" value="B"> Solo se crea una clase</div>
+        </div>
+      </div>
+
+      <!-- Pregunta 53 -->
+      <div class="question">
+        <div class="question-text">53. El siguiente código n compita porque falta el catch para manejar:try{…}
+          finally{…}.</div>
+        <div class="options">
+          <div class="option">
+            <input type="radio" name="q53" value="A"> FALSO
+            <div class="feedback" id="feedback-q53" style="display:none;"></div>
+          </div>
+          <div class="option"><input type="radio" name="q53" value="B"> VERDADERO</div>
+        </div>
+      </div>
+
+      <button type="button" class="submit-btn" onclick="submitExam()">Finalizar Examen</button>
+    </form>
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    const correctAnswers = {
+      q1: 'A',
+      q2: 'A',
+      q3: 'A',
+      q4: 'A',
+      q5: 'A',
+      q6: 'A',
+      q7: 'A',
+      q8: 'A',
+      q9: 'A',
+      q10: 'A',
+      q11: 'A',
+      q12: 'A',
+      q13: 'A',
+      q14: 'A',
+      q15: 'A',
+      q16: 'A',
+      q17: 'A',
+      q18: 'A',
+      q19: 'A',
+      q20: 'A',
+      q21: 'A',
+      q22: 'A',
+      q23: 'A',
+      q24: 'A',
+      q25: 'A',
+      q26: 'A',
+      q27: 'A',
+      q28: 'A',
+      q29: 'A',
+      q30: 'A',
+      q31: 'A',
+      q32: 'A',
+      q33: 'A',
+      q34: 'A',
+      q35: 'A',
+      q36: 'A',
+      q37: 'A',
+      q38: 'A',
+      q39: 'A',
+      q40: 'A',
+      q41: 'A',
+      q42: 'A',
+      q43: 'A',
+      q44: 'A',
+      q45: 'A',
+      q46: 'A',
+      q47: 'A',
+      q48: 'A',
+      q49: 'A',
+      q50: 'A',
+      q51: 'A',
+      q52: 'A',
+      q53: 'A'
+    };
+
+    function submitExam() {
+      let score = 0;
+      const totalQuestions = Object.keys(correctAnswers).length;
+
+      for (let question in correctAnswers) {
+        const selectedOption = document.querySelector(`input[name="${question}"]:checked`);
+        const feedbackElement = document.getElementById(`feedback-${question}`);
+
+        if (selectedOption) {
+          if (selectedOption.value === correctAnswers[question]) {
+            score++;
+            feedbackElement.textContent = '✓ Correcta';
+            feedbackElement.className = 'feedback correct-feedback';
+          } else {
+            feedbackElement.textContent = `✗ Incorrecta. La respuesta correcta es: ${correctAnswers[question]}`;
+            feedbackElement.className = 'feedback incorrect-feedback';
+          }
+        } else {
+          feedbackElement.textContent = `✗ No respondida. La respuesta correcta es: ${correctAnswers[question]}`;
+          feedbackElement.className = 'feedback incorrect-feedback';
+        }
+
+        feedbackElement.style.display = 'block';
+      }
+
+      const percentage = Math.round((score / totalQuestions) * 100);
+      const resultDiv = document.getElementById('result');
+
+      resultDiv.innerHTML = `<h2>Resultado del Examen</h2>
+                                  <p>Preguntas correctas: ${score}/${totalQuestions}</p>
+                                  <p>Porcentaje: ${percentage}%</p>`;
+
+      if (percentage >= 60) {
+        resultDiv.className = 'result correct';
+        resultDiv.innerHTML += '<p>¡Aprobado! 🎉</p>';
+      } else {
+        resultDiv.className = 'result incorrect';
+        resultDiv.innerHTML += '<p>Debes estudiar más 😢</p>';
+      }
+
+      resultDiv.style.display = 'block';
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  </script>
+</body>
+
+</html>
